@@ -305,7 +305,7 @@ Polmz`,
     ctx.bezierCurveTo(-6, -2.2, -3.2, -6, 0, -3.4);
     ctx.bezierCurveTo(3.2, -6, 6, -2.2, 0, 3.2);
     ctx.closePath();
-    ctx.fillStyle = `rgba(198, 124, 136, ${alpha})`;
+    ctx.fillStyle = `rgba(201, 88, 138, ${alpha})`;
     ctx.fill();
     ctx.restore();
   }
@@ -322,7 +322,7 @@ Polmz`,
         return;
       }
       ectx.beginPath();
-      ectx.fillStyle = `rgba(217, 171, 109, ${e.alpha})`;
+      ectx.fillStyle = `rgba(230, 165, 150, ${e.alpha})`;
       ectx.arc(e.x, e.y, e.r, 0, Math.PI * 2);
       ectx.fill();
     });
@@ -336,7 +336,7 @@ Polmz`,
   sizeCanvas(celCanvas);
 
   function burstCelebration(){
-    const colors = ["#d9ab6d", "#c97b86", "#f4ece1", "#8c4a56"];
+    const colors = ["#f0c383", "#e8a3bd", "#faf0f3", "#c9578a"];
     const pieces = [];
     const cx = window.innerWidth / 2;
     for (let i = 0; i < 90; i++){
