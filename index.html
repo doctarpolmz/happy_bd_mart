@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Just For You</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Ambient background canvas: soft drifting embers/petals, runs behind every screen -->
+<canvas id="emberCanvas"></canvas>
+
+<!-- Progress constellation: small dots showing which screen we're on -->
+<div class="progress-dots" id="progressDots" aria-hidden="true"></div>
+
+<main id="app">
+
+  <!-- ============ SCREEN 1 : LOCK ============ -->
+  <section class="screen active" id="screen-lock" data-screen="lock">
+    <div class="lock-card">
+      <button class="hint-photo" id="hintPhotoBtn" type="button" aria-label="Tap for a hint">
+        <!--
+          REPLACE ME: put the hint photo file in the images/ folder
+          and update CONFIG.hintPhoto in js/script.js (search "REPLACE").
+          This <img> tag itself never needs to change.
+        -->
+        <img id="hintPhotoImg" src="" alt="A little hint">
+      </button>
+      <h1 class="lock-title">Locked</h1>
+      <p class="lock-subtitle">Type the name of the person that loves you most to unlock!</p>
+      <p class="lock-subtitle">If you are uncertain, tap the photo above for a hint, then enter the passkey</p>
+
+      <div class="passkey-dots" id="passkeyDots"></div>
+
+      <div class="keypad" id="keypad">
+        <button class="key" data-key="q">q</button>
+        <button class="key" data-key="m">m</button>
+        <button class="key" data-key="f">f</button>
+        <button class="key" data-key="l">l</button>
+        <button class="key" data-key="o">o</button>
+        <button class="key" data-key="m">m</button>
+        <button class="key" data-key="x">x</button>
+        <button class="key" data-key="p">p</button>
+        <button class="key" data-key="y">y</button>
+        <button class="key key-clear" data-key="clear">⌫</button>
+        <button class="key" data-key="z">z</button>
+        <button class="key key-enter" data-key="enter">✓</button>
+      </div>
+      <p class="lock-error" id="lockError">Not quite, try again!</p>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN 2 : LOADING ============ -->
+  <section class="screen" id="screen-loading" data-screen="loading">
+    <div class="loading-heart" aria-hidden="true">
+      <svg viewBox="0 0 100 90" class="heart-svg">
+        <path d="M50 85 C20 60 2 40 2 22 C2 6 15 -2 28 4 C38 8 46 18 50 26 C54 18 62 8 72 4 C85 -2 98 6 98 22 C98 40 80 60 50 85 Z"/>
+      </svg>
+    </div>
+    <p class="loading-text" id="loadingText">Preparing something special…</p>
+  </section>
+
+  <!-- ============ SCREEN 3 : COUNTER / TITLE ============ -->
+  <section class="screen" id="screen-counter" data-screen="counter">
+    <div class="counter-card">
+      <div class="counter-badge" aria-hidden="true">✦</div>
+      <h1 class="counter-title" id="counterTitle">Happy Birthday  My Love</h1>
+      <p class="counter-subtitle" id="counterSubtitle">You have completed</p>
+      <div class="counter-numbers" id="counterNumbers">
+        <div class="counter-block"><span class="num" id="numYears">0</span><span class="label">years</span></div>
+        <div class="counter-block"><span class="num" id="numMonths">0</span><span class="label">months</span></div>
+        <div class="counter-block"><span class="num" id="numDays">0</span><span class="label">days</span></div>
+      </div>
+      <button class="btn btn-primary" data-next>Next</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN 4 : MEMORIES ============ -->
+  <section class="screen" id="screen-memories" data-screen="memories">
+    <div class="memories-card">
+      <h2 class="memories-title">Special Memories</h2>
+      <p class="memories-subtitle">Swipe for more ✦</p>
+      <div class="memories-track" id="memoriesTrack">
+        <!-- Photo slides are injected by js/script.js from CONFIG.photos -->
+      </div>
+      <div class="memories-dots" id="memoriesDots"></div>
+      <button class="btn btn-primary" data-next>Read your message ✦</button>
+    </div>
+  </section>
+
+  <!-- ============ SCREEN 5 : LETTER (wax seal) ============ -->
+  <section class="screen" id="screen-letter" data-screen="letter">
+    <div class="envelope-wrap">
+      <p class="envelope-hint">A letter, just for you</p>
+      <p class="envelope-subhint">Tap the seal to open it</p>
+      <button class="seal" id="sealBtn" type="button" aria-label="Break the seal to read your letter">
+        <svg viewBox="0 0 100 100" class="seal-svg">
+          <circle cx="50" cy="50" r="46"/>
+          <path d="M50 20 C58 30 58 42 50 50 C42 42 42 30 50 20 Z"/>
+          <path d="M50 80 C42 70 42 58 50 50 C58 58 58 70 50 80 Z"/>
+          <path d="M20 50 C30 42 42 42 50 50 C42 58 30 58 20 50 Z"/>
+          <path d="M80 50 C70 58 58 58 50 50 C58 42 70 42 80 50 Z"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="letter-card" id="letterCard">
+      <div class="letter-head">
+        <h2>Just For You <span aria-hidden="true">✦</span></h2>
+        <p class="letter-from">From my heart to yours</p>
+        <button class="letter-close" id="letterClose" aria-label="Close letter">✕</button>
+      </div>
+      <div class="letter-body" id="letterBody"><!-- filled by script.js from CONFIG.letter --></div>
+      <div class="letter-actions">
+        <button class="btn btn-primary" id="celebrateBtn">Celebrate ✦</button>
+        <button class="btn btn-ghost" id="restartBtn">Restart ↺</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Confetti / floating hearts burst layer, shown after "Celebrate" -->
+<canvas id="celebrateCanvas"></canvas>
+
+<script src="js/script.js"></script>
+</body>
+</html>
