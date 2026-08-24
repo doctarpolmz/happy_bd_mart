@@ -276,19 +276,38 @@ Polmz`,
   sizeCanvas(emberCanvas);
 
   function makeEmber(){
+    const isHeart = Math.random() < 0.18;
     return {
       x: Math.random() * window.innerWidth,
       y: window.innerHeight + Math.random() * 100,
-      r: 1 + Math.random() * 2.2,
+      r: isHeart ? 4 + Math.random() * 3.5 : 1 + Math.random() * 2.2,
       speed: 0.3 + Math.random() * 0.6,
       drift: (Math.random() - 0.5) * 0.4,
-      alpha: 0.15 + Math.random() * 0.5
+      alpha: 0.15 + Math.random() * 0.5,
+      isHeart,
+      rot: (Math.random() - 0.5) * 0.6
     };
   }
   for (let i = 0; i < 42; i++){
     const e = makeEmber();
     e.y = Math.random() * window.innerHeight;
     embers.push(e);
+  }
+
+  function drawHeart(ctx, x, y, r, rot, alpha){
+    const s = r / 3.6;
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(rot);
+    ctx.scale(s, s);
+    ctx.beginPath();
+    ctx.moveTo(0, 3.2);
+    ctx.bezierCurveTo(-6, -2.2, -3.2, -6, 0, -3.4);
+    ctx.bezierCurveTo(3.2, -6, 6, -2.2, 0, 3.2);
+    ctx.closePath();
+    ctx.fillStyle = `rgba(198, 124, 136, ${alpha})`;
+    ctx.fill();
+    ctx.restore();
   }
 
   function drawEmbers(){
@@ -298,6 +317,10 @@ Polmz`,
       e.y -= e.speed;
       e.x += e.drift;
       if (e.y < -10){ Object.assign(e, makeEmber()); e.y = window.innerHeight + 10; }
+      if (e.isHeart){
+        drawHeart(ectx, e.x, e.y, e.r, e.rot, e.alpha);
+        return;
+      }
       ectx.beginPath();
       ectx.fillStyle = `rgba(217, 171, 109, ${e.alpha})`;
       ectx.arc(e.x, e.y, e.r, 0, Math.PI * 2);

@@ -30,7 +30,7 @@
         -->
         <img id="hintPhotoImg" src="" alt="A little hint">
       </button>
-      <h1 class="lock-title">Locked</h1>
+      <h1 class="lock-title text-shimmer">Locked</h1>
       <p class="lock-subtitle">Type the name of the person that loves you most to unlock!</p>
       <p class="lock-subtitle">If you are uncertain, tap the photo above for a hint, then enter the passkey</p>
 
@@ -68,7 +68,8 @@
   <section class="screen" id="screen-counter" data-screen="counter">
     <div class="counter-card">
       <div class="counter-badge" aria-hidden="true">✦</div>
-      <h1 class="counter-title" id="counterTitle">Happy Birthday  My Love</h1>
+      <h1 class="counter-title text-shimmer" id="counterTitle">Happy Birthday  My Love</h1>
+      <div class="ornament" aria-hidden="true"><i></i></div>
       <p class="counter-subtitle" id="counterSubtitle">You have completed</p>
       <div class="counter-numbers" id="counterNumbers">
         <div class="counter-block"><span class="num" id="numYears">0</span><span class="label">years</span></div>
@@ -82,7 +83,8 @@
   <!-- ============ SCREEN 4 : MEMORIES ============ -->
   <section class="screen" id="screen-memories" data-screen="memories">
     <div class="memories-card">
-      <h2 class="memories-title">Special Memories</h2>
+      <h2 class="memories-title text-shimmer">Special Memories</h2>
+      <div class="ornament" aria-hidden="true"><i></i></div>
       <p class="memories-subtitle">Swipe for more ✦</p>
       <div class="memories-track" id="memoriesTrack">
         <!-- Photo slides are injected by js/script.js from CONFIG.photos -->
@@ -95,7 +97,8 @@
   <!-- ============ SCREEN 5 : LETTER (wax seal) ============ -->
   <section class="screen" id="screen-letter" data-screen="letter">
     <div class="envelope-wrap">
-      <p class="envelope-hint">A letter, just for you</p>
+      <p class="envelope-hint text-shimmer">A letter, just for you</p>
+      <div class="ornament" aria-hidden="true"><i></i></div>
       <p class="envelope-subhint">Tap the seal to open it</p>
       <button class="seal" id="sealBtn" type="button" aria-label="Break the seal to read your letter">
         <svg viewBox="0 0 100 100" class="seal-svg">
@@ -110,8 +113,9 @@
 
     <div class="letter-card" id="letterCard">
       <div class="letter-head">
-        <h2>Just For You <span aria-hidden="true">✦</span></h2>
+        <h2 class="text-shimmer-warm">Just For You <span aria-hidden="true">✦</span></h2>
         <p class="letter-from">From my heart to yours</p>
+        <div class="ornament ornament-warm" aria-hidden="true"><i></i></div>
         <button class="letter-close" id="letterClose" aria-label="Close letter">✕</button>
       </div>
       <div class="letter-body" id="letterBody"><!-- filled by script.js from CONFIG.letter --></div>
