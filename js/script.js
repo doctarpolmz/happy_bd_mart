@@ -15,7 +15,7 @@ const CONFIG = {
 
   // REPLACE: the date your story together began ("YYYY-MM-DD").
   // The counter screen shows how many years / months / days since this date.
-  togetherSince: "2000-08-24",
+  togetherSince: "2003-08-24",
 
   // REPLACE: headline + subheading on the counter screen.
   counterTitle: "Happy Birthday, My Love",
